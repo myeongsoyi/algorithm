@@ -3,16 +3,18 @@ import java.util.Collections;
 
 class Solution {
     public int solution(int[] people, int limit) {
-        int answer = 0;
-        ArrayList<Integer> ppl = new ArrayList<>();
-        for(int p : people) ppl.add(p);
-        Collections.sort(ppl);
-        int end = 0;
-        for(int h = ppl.size()-1; h >= 0; h--){
-            if(end > h) break;
-            if(ppl.get(h)+ ppl.get(end) <= limit) end++;
-            answer++;
+        int ans = 0;
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int p : people) list.add(p);
+        Collections.sort(list);
+        int start = 0;
+        int end = list.size()-1;
+        while(true){
+            if(end < start) break;
+            if(list.get(start) + list.get(end) <= limit) start++;
+            end--;
+            ans++;
         }
-        return answer;
+        return ans;
     }
 }
